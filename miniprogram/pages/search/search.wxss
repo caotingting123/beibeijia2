@@ -1,0 +1,4 @@
+/* miniprogram/pages/search/searchwords.wxss */
+.i-btn{
+  margin: 15px !important;
+}
