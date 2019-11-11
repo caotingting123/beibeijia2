@@ -13,7 +13,36 @@ Page({
       mine:false
     }
   },
+  /**
+   * 点击事件
+   */
+  handleClick: function () {
+    /**
+     * 获取图片，完成查词操作
+     */
+    wx.chooseImage({
+      success: res=> {
+        let ImageBase64 = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0],"base64")
+        console.log(ImageBase64)
+        /**
+         * 调用云函数
+         */
+        wx.cloud.callFunction({
+          name:'wordapi',
+          data:{
+            ImageBase64:ImageBase64
+          },
+          success:res=>{
+            console.log(res)
+          }
 
+        })
+      },
+    })
+  },
+  /**
+   * 切换tab事件
+   */
   handleChange ({ detail }){
     let that = this
     

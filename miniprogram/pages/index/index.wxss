@@ -1,5 +1,2 @@
 /* miniprogram/pages/index/index.wxss */
 @import "../search/search.wxss";
-.i-btn{
-  margin: 15px !important
-}
