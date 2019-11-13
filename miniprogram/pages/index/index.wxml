@@ -1,6 +1,7 @@
 <!--miniprogram/pages/index/index.wxml-->
-
-
+<import src="../search/search.wxml"/>
+<import src="../community/community.wxml"/>
+<import src="../mine/mine.wxml"/>
 <i-tab-bar current="{{ current }}" color="#f759ab" bindchange="handleChange" fixed>
     <i-tab-bar-item key="index" icon="createtask" current-icon="createtask_fill" title="背词">
     </i-tab-bar-item>
@@ -13,13 +14,13 @@
 index
 </view>
 
-<import src="../search/search.wxml"></import>
+
 <template is="searchItem" data="{{isList}}"></template>
 
-<import src="../community/community.wxml"></import>
+
 <template is="communityItem" data="{{isList}}"></template>
 
-<import src="../mine/mine.wxml"></import>
-<template is="mineItem" data="{{isList}}"></template>
+
+<template is="mineItem" data="{{isList,avatarUrl}}"></template>
 
 
