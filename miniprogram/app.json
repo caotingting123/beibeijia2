@@ -16,7 +16,8 @@
     "pages/index1/index1",
     "pages/search/search",
     "pages/community/community",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/selectMajor/selectMajor"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -25,10 +26,10 @@
     "navigationBarTitleText": "专业英语背背佳",
     "navigationBarTextStyle": "black"
   },
-  "plugins":{
-    "WechatSI":{
-      "version":"0.3.3",
-      "provider":"wx069ba97219f66d99"
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.3",
+      "provider": "wx069ba97219f66d99"
     }
   },
   "sitemapLocation": "sitemap.json"

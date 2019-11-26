@@ -14,7 +14,11 @@ Page({
   onLoad: function (options) {
 
   },
-
+  handleSelect: function(){
+    wx.navigateTo({
+      url: '../selectMajor/selectMajor.wxml',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,0 +1,12 @@
+<!--miniprogram/pages/selectMajor/selectMajor.wxml-->
+<view style="margin-top: 5px" wx:for="{{majorArray}}">
+    <i-button type="ghost" bind:click="handleOpen1" id="{{item.name}}">{{item.name}}</i-button>
+</view>
+<i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" mask-closable="{{ false }}">
+    <view slot="header" style="padding: 16px">
+        <view style="color: #444;font-size: 16px">确定要进入该专业社区吗？</view>
+        <text>修改后还可继续修改</text>
+    </view>
+</i-action-sheet>
+
+<i-message id="message" />

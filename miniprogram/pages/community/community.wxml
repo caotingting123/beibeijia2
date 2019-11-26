@@ -1,7 +1,23 @@
 <!--miniprogram/pages/community/community.wxml-->
 <template name="communityItem">
-<view wx:if="{{isList.community}}" class="community">
-community
-</view>
+  <view wx:if="{{isList.community}}" class="community">
+    <view class="i-sticky-demo">
+        <i-sticky scrollTop="{{scrollTop}}">
+            <i-sticky-item i-class="i-sticky-demo-title">
+                <view slot="title">
+                    <view style="display:inline-block" wx:if="{{selectedMajor != null}}">{{selectedMajor}}</view>
+                    <view style="display:inline-block" wx:else>请选择专业</view>
+                    <i-button bind:click="handleSelect" type="primary"  i-class="myclass2" style="float:right;">选择专业</i-button>
+                </view>
+                <view slot="content" wx:for="{{communityInfos}}" wx:key="item" >
+                  <i-card title="{{item.title}}" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+                      <view slot="content">{{item.content}}</view>
+                      <view slot="footer">尾部内容</view>
+                  </i-card>
+                </view>
+            </i-sticky-item>
+        </i-sticky>
+    </view>
+  </view>
 </template>
 

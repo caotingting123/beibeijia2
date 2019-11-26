@@ -12,7 +12,7 @@
         style="background-image: url({{avatarUrl}})"
       ></button>
       <view>
-        <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+       {{userInfo.nickName}}
       </view>
     </view>
   </i-cell-group>
@@ -25,6 +25,9 @@
           <switch slot="footer" checked />
       </i-cell>
   </i-cell-group>
+  <!-- <i-cell-group>
+    <i-button bind:click="onExit" type="error">退出</i-button>
+  </i-cell-group> -->
 </view>
 </template>
 

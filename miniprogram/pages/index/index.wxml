@@ -18,9 +18,9 @@ index
 <template is="searchItem" data="{{isList}}"></template>
 
 
-<template is="communityItem" data="{{isList}}"></template>
+<template is="communityItem" data="{{isList,scrollTop,selectedMajor,communityInfos}}"></template>
 
 
-<template is="mineItem" data="{{isList,avatarUrl}}"></template>
+<template is="mineItem" data="{{isList,avatarUrl,userInfo}}"></template>
 
 
