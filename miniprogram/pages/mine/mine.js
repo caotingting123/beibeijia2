@@ -72,6 +72,7 @@ function login() {
     name: 'login',
     data: {},
     success: res => {
+      console.log('调用login云函数返回的res',res)
       console.log('[云函数] [login] user openid: ', res.result.openid)
       app.globalData.openid = res.result.openid
       wx.navigateTo({

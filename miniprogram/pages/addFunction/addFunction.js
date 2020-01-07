@@ -39,6 +39,7 @@ Page({
         b: 2
       },
       success: res => {
+        console.log("sun云函数返回的对象",res)
         wx.showToast({
           title: '调用成功',
         })

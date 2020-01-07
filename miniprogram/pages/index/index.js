@@ -23,7 +23,10 @@ Page({
       search:false,
       community:false,
       mine:false
-    }
+    },
+    //进度条
+    percent: 45,
+    status: 'normal'
   },
   initRecord:function(){
     manager.onRecognize = function (res) {

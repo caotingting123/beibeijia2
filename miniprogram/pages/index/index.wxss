@@ -2,3 +2,80 @@
 @import "../search/search.wxss";
 @import "../mine/mine.wxss";
 @import "../community/community.wxss";
+.word_index_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items:center;
+
+}
+
+
+
+.word_index_circle{
+  text-align:center;
+  align-items:center;
+  position: fixed;
+  width: 100%;
+  top: 10%;
+}
+
+.word_index_task{
+  text-align:center;
+  align-items:center;
+  position: fixed;
+  width: 100%;
+  bottom: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.status{
+  display: flex;
+  flex-direction: column;
+  font-size: 18rpx;
+}
+.word_index_start_and_status{
+  
+  text-align:center;
+  align-items:center;
+}
+
+.add_start_btn{
+  width: 100%;
+  position: fixed;
+  bottom:  60%;
+  /* bottom 是根据 tab-bar 的高度为70px 设置的 */
+}
+.grid_style{
+  width: 100%;
+  position: fixed;
+  bottom:  20%;
+  /* bottom 是根据 tab-bar 的高度为70px 设置的 */
+}
+
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.content-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10rpx;
+  border: 2rpx solid #efefef;
+}
+.content-item-img {
+  margin-bottom: 10rpx;
+}
+.content-item-text {
+  margin-top: 10rpx;
+  font-size: 35rpx;
+  color: #333333;
+}
