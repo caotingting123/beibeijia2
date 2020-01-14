@@ -59,6 +59,28 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/cuoci/cuoci",
+					"pathName": "pages/cuoci/cuoci",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/reciteWord/reciteWord",
+					"pathName": "pages/reciteWord/reciteWord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
+					"query": "",
 					"scene": null
 				}
 			]

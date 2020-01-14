@@ -3,32 +3,33 @@
 <view wx:if="{{isList.mine}}" class="mine">
 
   <!-- 用户 openid -->
-  <i-cell-group>
-  <view class="userinfo">
+  
+  <view class="mine-userinfo">
       <button 
         open-type="getUserInfo" 
         bindgetuserinfo="onGetUserInfo"
         class="userinfo-avatar"
         style="background-image: url({{avatarUrl}})"
       ></button>
-      <view>
+      <view class="username">
        {{userInfo.nickName}}
       </view>
-    </view>
-  </i-cell-group>
+  </view>
   
-  <i-cell-group class="userOperation">
+  
+  <i-cell-group i-class="userOperation">
       <i-cell title="学习进度" is-link url="/pages/dashboard/index"> </i-cell>
-      <i-cell title="只显示箭头" is-link></i-cell>
-      <i-cell title="跳转到首页" is-link url="/pages/dashboard/index"></i-cell>
-      <i-cell title="只有 footer 点击有效" is-link url="/pages/dashboard/index" only-tap-footer></i-cell>
-      <i-cell title="开关">
+      
+        <i-cell title="学习设置" is-link="true" url="pages/index/index" link-type="navigateTo"></i-cell>
+    
+      <i-cell title="我的收藏" is-link url="/pages/dashboard/index"></i-cell>
+      <i-cell title="夜间模式">
           <switch slot="footer" checked />
       </i-cell>
   </i-cell-group>
-  <!-- <i-cell-group>
-    <i-button bind:click="onExit" type="error">退出</i-button>
-  </i-cell-group> -->
+  <i-cell-group i-class="userOperation">
+    <i-cell title="关于我们" is-link url="/pages/dashboard/index"> </i-cell>
+  </i-cell-group>
 </view>
 </template>
 

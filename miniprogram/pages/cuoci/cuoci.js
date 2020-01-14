@@ -1,18 +1,36 @@
-// miniprogram/pages/mine/mine.js
+// pages/cuoci/cuoci.js
+const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    wrongWord:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.cloud.callFunction({
+      name: 'login',
+    }).then(res => {
+      db.collection('cuoci').where({
+        _openid: res.result.openid
+      }).get().then(res2 => {
+        
+        for (var i = 0; i < res2.data.length; i++ ){
+          res2.data[i].date = JSON.stringify(res2.data[i].date).split("T")[0].split("\"")[1]
+        }
+        console.log(res2)
+        this.setData({
 
+          wrongWord: res2.data
+        })
+        
+      })
+    })
   },
 
   /**
@@ -64,30 +82,3 @@ Page({
 
   }
 })
-
-const app = getApp()
-function login() {
-  // 调用云函数
-  wx.cloud.callFunction({
-    name: 'login',
-    data: {},
-    success: res => {
-      console.log('调用login云函数返回的res',res)
-      console.log('[云函数] [login] user openid: ', res.result.openid)
-      app.globalData.openid = res.result.openid
-      wx.navigateTo({
-        url: '../userConsole/userConsole',
-      })
-    },
-    fail: err => {
-      console.error('[云函数] [login] 调用失败', err)
-      wx.navigateTo({
-        url: '../deployFunctions/deployFunctions',
-      })
-    }
-  })
-}
-
-module.exports = {
-  login:login
-}

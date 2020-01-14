@@ -1,5 +1,6 @@
 // miniprogram/pages/index/index.js
 var plugin = requirePlugin("WechatSI")
+const db = wx.cloud.database(); //初始化数据库
 //var mine = require("../mine/mine.js")
 let manager =  plugin.getRecordRecognitionManager()
 const app = getApp()
@@ -25,9 +26,30 @@ Page({
       mine:false
     },
     //进度条
-    percent: 45,
-    status: 'normal'
+    percent: 0,
+    status: 'normal',
+
+    current1: 'tab1',   //tab
+
+    word_learned: 0,   //已学单词数
+    word_unlearn: 0,   //未学单词数
+    total_words: 0,   //该专业所有单词数
   },
+  //上边的tab时间
+  handleChange1({ detail }) {
+    this.setData({
+      current: detail.key
+    });
+    if (detail.key == "tab1") {
+      this.onLoad()
+    }
+    else {
+      wx.navigateTo({
+        url: '../selectMajor/selectMajor',
+      })
+    }
+  },
+  
   initRecord:function(){
     manager.onRecognize = function (res) {
       console.log("current result", res.result)
@@ -98,10 +120,17 @@ Page({
       isList
     })
   },
+  clickStudy:function(event){
+    wx.navigateTo({
+      url: '../reciteWord/reciteWord?major=' + event.target.dataset.major,
+    });
+    console.log(event.target.dataset.major)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -115,6 +144,7 @@ Page({
                 logged:true
               })
               this.getOpenidExt()
+              
             }
           })
         }
@@ -122,6 +152,24 @@ Page({
     })
 
     this.initRecord()
+    this.handleMajor()
+    
+    //获取进度信息
+    db.collection('studyProcess').where({
+      _openid: this.data.openid,
+      major: this.data.selectedMajor
+    }).get().then(res => {
+      console.log(this.data.selectedMajor)
+      this.setData({
+        word_learned: res.data[0].word_learned,
+        word_unlearn: res.data[0].word_unlearn,
+        total_words: res.data[0].total_words,
+        percent: res.data[0].word_learned / res.data[0].total_words * 100
+      });
+      
+    }).catch(err => {
+      console.log(err)
+    })
   },
   onGetOpenid:function(){
     //mine.login()
@@ -158,6 +206,7 @@ Page({
    */
   onShow: function () {
     this.handleMajor()
+    
   },
 
   /**
@@ -178,7 +227,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -253,8 +302,8 @@ Page({
     try {
       const db = wx.cloud.database()
       var value = wx.getStorageSync('selectedMajor')
-      console.log(value)
-      console.log(that.data.selectedMajor)
+      //console.log(value)
+      //console.log(that.data.selectedMajor)
       if (value) {
         // Do something with return value
         if(value != that.data.selectedMajor){
@@ -269,7 +318,7 @@ Page({
             .limit(10) // 限制返回数量为 10 条
             .get()
             .then(res => {
-              console.log(res.data)
+              //console.log(res.data)
               that.setData({
                 communityInfos:res.data
               })

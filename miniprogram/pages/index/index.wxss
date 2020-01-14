@@ -17,7 +17,7 @@
   align-items:center;
   position: fixed;
   width: 100%;
-  top: 10%;
+  top: 20%;
 }
 
 .word_index_task{
@@ -25,7 +25,7 @@
   align-items:center;
   position: fixed;
   width: 100%;
-  bottom: 75%;
+  bottom: 63%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -44,13 +44,13 @@
 .add_start_btn{
   width: 100%;
   position: fixed;
-  bottom:  60%;
+  bottom:  50%;
   /* bottom 是根据 tab-bar 的高度为70px 设置的 */
 }
 .grid_style{
   width: 100%;
   position: fixed;
-  bottom:  20%;
+  bottom:  7%;
   /* bottom 是根据 tab-bar 的高度为70px 设置的 */
 }
 
@@ -78,4 +78,14 @@
   margin-top: 10rpx;
   font-size: 35rpx;
   color: #333333;
+}
+
+.grid_index{
+  height: 240rpx;
+}
+.grid-img{
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+  margin: 0 auto;
 }

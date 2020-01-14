@@ -11,66 +11,73 @@
 </i-tab-bar> 
 
 <view wx:if="{{isList.index}}" class="index">
-<view class="word_index_circle">
-    <i-progress percent="{{percent}}" status="active"></i-progress>
-   
-  </view>
-  <view class="word_index_task">
-    <view class='status'>
-      <i-icon type="emoji" size="20"/>
-      <text>{{word_learing}}</text>
-      <text>学习中字词</text>
-    </view>
-    <view class='status'>
-      <i-icon type="success"   size="20"/>
-      <text>{{word_learned}}</text>
-      <text>已学习字词</text>
-    </view>
-    
-    <view class='status'>
-      <i-icon type="delete" size="20"/>
+
+    <i-panel title="">
+      <view style="padding: 15px;">专业：{{selectedMajor}}</view>
+    </i-panel>
+    <i-tabs current="{{current1}}" bindchange="handleChange1">
+      <i-tab key="tab1" title="学习进度"></i-tab>
+      <i-tab key="tab2" title="打卡日历"></i-tab>
       
-      <text>{{word_unlearn}}</text> 
-      <text>未学习字词</text>
+    </i-tabs>
+    <view class="word_index_circle">
+      <i-progress percent="{{percent}}" status="active"></i-progress>
+      
     </view>
-  </view>
-  <view class="add_start_btn">
-    
-    <i-button type="primary" bind:click="clickStudy">开始学习</i-button>
-    
-  </view>
-  <view class="grid_style">
-    <i-grid>
-      <i-grid-item>
-          <i-grid-icon>
-              <image src="../../images/index/xuexi.png" />
-          </i-grid-icon>
-          <i-grid-label>学习</i-grid-label>
-      </i-grid-item>
-      <i-grid-item>
-          <i-grid-icon>
-              <image  src="../../images/index/cuoci.png" />
-          </i-grid-icon>
-          <i-grid-label>错词本</i-grid-label>
-      </i-grid-item>
+    <view class="word_index_task">
+      <view class='status'>
+        <i-icon type="emoji" size="20"/>
+        <text>{{word_learned}}</text>
+        <text>学习中字词</text>
+      </view>
+      <view class='status'>
+        <i-icon type="success"   size="20"/>
+        <text>{{word_learned}}</text>
+        <text>已学习字词</text>
+      </view>
       
-    </i-grid>
-    <i-grid>
-      <i-grid-item>
-          <i-grid-icon>
-              <image src="../../images/index/duizhan.png" />
-          </i-grid-icon>
-          <i-grid-label>好友对战</i-grid-label>
-      </i-grid-item>
-      <i-grid-item>
-          <i-grid-icon>
-              <image src="../../images/index/juzi.png" />
-          </i-grid-icon>
-          <i-grid-label>每日一句</i-grid-label>
-      </i-grid-item>
+      <view class='status'>
+        <i-icon type="delete" size="20"/>
+        
+        <text>{{word_unlearn}}</text> 
+        <text>未学习字词</text>
+      </view>
+    </view>
+    <view class="add_start_btn">
       
-    </i-grid>
+      <i-button type="primary" shape="circle" bind:click="clickStudy" data-major="{{selectedMajor}}">开始学习</i-button>
+      
+    </view>
+
+    <view class="grid_style">
+      <i-grid >
+        <i-grid-item i-class = "grid_index">
+          <navigator url='../reciteWord/reciteWord?major={{selectedMajor}}'> 
+            <image class="grid-img"  src="../../images/index/xuexi.png" />        
+            <i-grid-label>单词学习</i-grid-label>
+          </navigator>
+        </i-grid-item>
+        <i-grid-item i-class = "grid_index">
+          <navigator url='../cuoci/cuoci'>           
+            <image class="grid-img" src="../../images/index/cuoci.png" />  
+            <i-grid-label>错词本</i-grid-label>
+          </navigator>
+        </i-grid-item>
+        
+      </i-grid>
+      <i-grid>
+        <i-grid-item i-class = "grid_index">         
+            <image class="grid-img" src="../../images/index/duizhan.png" />      
+            <i-grid-label>好友对战</i-grid-label>
+        </i-grid-item>
+        <i-grid-item i-class = "grid_index">
+            <image class="grid-img" src="../../images/index/juzi.png" />
+            <i-grid-label>每日一句</i-grid-label>
+        </i-grid-item>
+        
+      </i-grid>
   </view>
+  
 </view>
 
 
