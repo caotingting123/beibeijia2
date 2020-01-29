@@ -1,2 +1,17 @@
 <!--miniprogram/pages/mine/setting/setting.wxml-->
-<text>miniprogram/pages/mine/setting/setting.wxml</text>
+<view class="cu-form-group margin-top">
+  <view class="title">每天学习的新词数量</view>
+  <picker bindchange="newPickerChange" value="{{newIndex}}" range="{{newArray}}">
+    <view class="picker">
+      当前选择：{{newArray[newIndex]}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group margin-top">
+  <view class="title">每天学习旧词数量</view>
+  <picker bindchange="oldPickerChange" value="{{oldIndex}}" range="{{oldArray}}">
+    <view class="picker">
+      当前选择：{{oldArray[oldIndex]}}
+    </view>
+  </picker>
+</view>

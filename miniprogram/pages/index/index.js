@@ -45,7 +45,7 @@ Page({
     }
     else {
       wx.navigateTo({
-        url: '../selectMajor/selectMajor',
+        url: '../calendar/calendar',
       })
     }
   },
@@ -164,7 +164,7 @@ Page({
         word_learned: res.data[0].word_learned,
         word_unlearn: res.data[0].word_unlearn,
         total_words: res.data[0].total_words,
-        percent: res.data[0].word_learned / res.data[0].total_words * 100
+        percent: parseInt(res.data[0].word_learned / res.data[0].total_words * 100)
       });
       
     }).catch(err => {

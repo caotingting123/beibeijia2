@@ -2,7 +2,7 @@
 <import src="../search/search.wxml"/>
 <import src="../community/community.wxml"/>
 <import src="../mine/mine.wxml"/>
-<i-tab-bar current="{{ current }}" color="#f759ab" bindchange="handleChange" fixed>
+<i-tab-bar current="{{ current }}" color="#0081ff" bindchange="handleChange" fixed>
     <i-tab-bar-item key="index" icon="createtask" current-icon="createtask_fill" title="背词">
     </i-tab-bar-item>
     <i-tab-bar-item key="search" icon="search" current-icon="searchfill" title="查词"></i-tab-bar-item>
@@ -11,10 +11,11 @@
 </i-tab-bar> 
 
 <view wx:if="{{isList.index}}" class="index">
-
-    <i-panel title="">
-      <view style="padding: 15px;">专业：{{selectedMajor}}</view>
-    </i-panel>
+    <navigator url="/pages/selectMajor/selectMajor" >
+      <i-panel title="">
+        <view style="padding: 15px;">专业：{{selectedMajor}}</view>
+      </i-panel>
+    </navigator>
     <i-tabs current="{{current1}}" bindchange="handleChange1">
       <i-tab key="tab1" title="学习进度"></i-tab>
       <i-tab key="tab2" title="打卡日历"></i-tab>
@@ -66,9 +67,11 @@
         
       </i-grid>
       <i-grid>
-        <i-grid-item i-class = "grid_index">         
+        <i-grid-item i-class = "grid_index">  
+          <navigator url='/pages/index/against/against'>       
             <image class="grid-img" src="../../images/index/duizhan.png" />      
             <i-grid-label>好友对战</i-grid-label>
+          </navigator>
         </i-grid-item>
         <i-grid-item i-class = "grid_index">
             <image class="grid-img" src="../../images/index/juzi.png" />

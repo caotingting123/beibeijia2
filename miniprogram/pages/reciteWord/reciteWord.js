@@ -127,6 +127,7 @@ Page({
             name: 'process',
             data: {
               major: that.data.major,
+              totalNumber:124,
               studyNumber: -that.data.total_words
             }
           }).then(res2 => {
@@ -220,6 +221,7 @@ Page({
       name:'process',
       data:{
         major:this.data.major,
+        totalNumber: 124,
         studyNumber:this.data.studyNumber
       }
     }).then(res=>{

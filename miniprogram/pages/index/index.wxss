@@ -11,7 +11,6 @@
 }
 
 
-
 .word_index_circle{
   text-align:center;
   align-items:center;
@@ -52,6 +51,7 @@
   position: fixed;
   bottom:  7%;
   /* bottom 是根据 tab-bar 的高度为70px 设置的 */
+  
 }
 
 

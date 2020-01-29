@@ -1,5 +1,6 @@
 // miniprogram/pages/selectMajor/selectMajor.js
 const { $Message } = require('../../dist/base/index');
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -22,6 +23,7 @@ Page({
       visible1: true,
       major_id:id
     });
+    
   },
 
   handleCancel1() {
@@ -39,6 +41,66 @@ Page({
     })
     this.setData({
       visible1:false
+    })
+    //查询studyProcess是否有该记录
+    db.collection('studyProcess').where({
+      _openid: 'owcam5DXxbjSC2hlK95LFDExXIZc', // 填入当前用户 openid\
+      major: that.data.major_id
+    }).count().then(res => {
+      //console.log(that.data.major_id)
+      //console.log(res.total)
+      //如果没有该专业的进度信息，则添加
+      if (res.total == 0){
+        //查询所选major 的字典
+        db.collection('major').where({
+          name: that.data.major_id // 填入major
+        }).get().then(res1 => {
+          //console.log(res1.data[0].dictionary)
+          //查询所选专业对应字典的单词记录数目
+          db.collection(res1.data[0].dictionary).count().then(res2 => {
+            //console.log(res2.total)
+            //增加
+            db.collection('studyProcess').add({
+              // data 字段表示需新增的 JSON 数据
+              data: {
+                _openid: this.data.openid,
+                major: that.data.major_id,
+                total_words: res2.total,
+                word_learned: 0,
+                word_unlearn: res2.total
+              }
+            }).then(res3 => {
+                console.log(res3)
+              })
+              .catch(console.error)
+          })
+        })
+      } else {//已存在该记录，则更新
+        
+        //查询所选major 的字典
+        db.collection('major').where({
+          name: that.data.major_id // 填入major
+        }).get().then(res1 => {
+          //console.log(res1.data[0].dictionary)
+          //查询所选专业对应字典的单词记录数目
+          db.collection(res1.data[0].dictionary).count().then(res2 => {
+            console.log(res2.total)
+            wx.cloud.callFunction({
+              name: 'process',
+              data: {
+                major: that.data.major,
+                studyNumber: 0,
+                totalNumber: res2.total
+              }
+            }).then(res3 => {
+              console.log(res3)
+            }).catch(err => {
+              console.log(err)
+            })
+          })
+        })
+        
+      }
     })
     wx.navigateBack({
       delta:1

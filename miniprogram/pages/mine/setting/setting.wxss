@@ -1,1 +1,14 @@
 /* miniprogram/pages/mine/setting/setting.wxss */
+.margin-top {
+  margin-top: 30rpx;
+
+}
+.cu-form-group {
+background-color: #fff;
+padding: 1rpx 30rpx;
+display: flex;
+align-items: center;
+min-height: 100rpx;
+justify-content: space-between;
+
+}

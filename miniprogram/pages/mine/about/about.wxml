@@ -1,0 +1,30 @@
+<!--miniprogram/pages/mine/about/about.wxml-->
+<view class="about">
+<text class="about-text"> 关于我们 </text>
+<i-steps current="3" direction="vertical" class="about-steps">
+    <i-step>
+        <view slot="title">
+            版权所有：
+        </view>
+        <view slot="content">
+            西安电子科技大学 曹婷婷 李汝捷
+        </view>
+    </i-step>
+    <i-step>
+        <view slot="title">
+            打赏:
+        </view>
+        <view slot="content">
+            请扫描下方二维码
+        </view>
+    </i-step>
+    <i-step>
+        <view slot="title">
+            反馈：
+        </view>
+        <view slot="content">
+            请联系邮箱2902608223@qq.com
+        </view>
+    </i-step>
+</i-steps>
+</view>

@@ -1,0 +1,21 @@
+/* miniprogram/pages/mine/about/about.wxss */
+page{
+  background-color: #d2f1f0;
+  width: 100%;
+  height: 100%;
+}
+.about{
+  background-color: #d2f1f0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+.about-text{
+  text-align: center;
+}
+.about-steps{
+  display: flex;
+  margin-top: 30rpx;
+}

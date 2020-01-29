@@ -1,7 +1,9 @@
 <!--pages/cuoci/cuoci.wxml-->
 <view wx:for="{{wrongWord}}" wx:key="index">
-<i-card title="{{item.word}}" extra="删除" >
+<view bindtap="delCuoci" data-cuoci="{{item.word}}">
+<i-card title="{{item.word}}" extra="移除" >
     <view slot="content">{{item.mean}}</view>
     <view slot="footer">{{item.date}}</view>
 </i-card>
+</view>
 </view>

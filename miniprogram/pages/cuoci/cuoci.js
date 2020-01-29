@@ -8,7 +8,33 @@ Page({
   data: {
     wrongWord:[],
   },
-
+  delCuoci:function(event){
+    //console.log(event.currentTarget.dataset.cuoci)
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否将该词移出错词本？',
+      success(res) {
+        if (res.confirm) {
+          wx.cloud.callFunction({
+            name:"delCuoci",
+            data:{
+              word: event.currentTarget.dataset.cuoci
+            }
+          }).then(res=>{
+            that.onLoad()
+            wx.showToast({
+              title: '已移除',
+            })
+            
+          })
+        } else if (res.cancel) {
+          
+        }
+      },
+      fail: console.error
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

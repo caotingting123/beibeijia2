@@ -1,5 +1,5 @@
 <!--miniprogram/pages/selectMajor/selectMajor.wxml-->
-<view style="margin-top: 5px" wx:for="{{majorArray}}">
+<view style="margin-top: 5px" wx:for="{{majorArray}}" wx:key="index">
     <i-button type="ghost" bind:click="handleOpen1" id="{{item.name}}">{{item.name}}</i-button>
 </view>
 <i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" mask-closable="{{ false }}">
