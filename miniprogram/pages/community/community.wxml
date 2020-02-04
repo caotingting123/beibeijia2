@@ -3,8 +3,8 @@
   <view wx:if="{{isList.community}}" class="community">
     <view class="i-sticky-demo">
         <i-sticky scrollTop="{{scrollTop}}">
-            <i-sticky-item i-class="i-sticky-demo-title">
-                <view slot="title">
+            <i-sticky-item  i-class="i-sticky-demo-title">
+                <view  class="community_major" slot="title">
                     <view style="display:inline-block" wx:if="{{selectedMajor != null}}">{{selectedMajor}}</view>
                     <view style="display:inline-block" wx:else>请选择专业</view>
                     <i-button bind:click="handleSelect" type="primary"  i-class="myclass2" style="float:right;">选择专业</i-button>

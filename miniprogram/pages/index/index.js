@@ -164,7 +164,7 @@ Page({
         word_learned: res.data[0].word_learned,
         word_unlearn: res.data[0].word_unlearn,
         total_words: res.data[0].total_words,
-        percent: parseInt(res.data[0].word_learned / res.data[0].total_words * 100)
+        percent: (res.data[0].word_learned / res.data[0].total_words * 100).toFixed(2)
       });
       
     }).catch(err => {
@@ -227,7 +227,19 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onLoad()
+    //模拟加载
+
+    setTimeout(function () {
+
+      // complete
+
+      wx.hideNavigationBarLoading() //完成停止加载
+
+      wx.stopPullDownRefresh() //停止下拉刷新
+
+    }, 1500);
   },
 
   /**

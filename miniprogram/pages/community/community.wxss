@@ -6,3 +6,6 @@
   vertical-align: middle !important;
   margin: 0px !important;
 }
+.community_major{
+  height:80rpx;
+}

@@ -22,9 +22,11 @@ Page({
     word_unlearn:0,   //未学单词数
     studyNumber:0,   //本次学习单词数
     total_words:0,   //该专业所有单词数
+
+    dictionary:"computer_dictionary" ,//当前的专业词典
   },
+  //页面点击翻转
   rotateFn: function () {
-    
     this.animation_main = wx.createAnimation({
       duration: 400,
       timingFunction: 'linear'
@@ -34,7 +36,6 @@ Page({
       timingFunction: 'linear'
     })
     // 点击正面
-
     if (this.data.MainorBack) {
       this.animation_main.rotateY(180).step()
       this.animation_back.rotateY(0).step()
@@ -43,18 +44,16 @@ Page({
         MainorBack: false
       })
     }
-    else { // 点击背面
-      
+    else { // 点击背面    
       this.animation_main.rotateY(0).step()
       this.animation_back.rotateY(-180).step()
       this.setData({
         animationData: this.animation_main.export(),
         MainorBack: true
-      })
-      
+      })  
     }
-    
   },
+  //点击“我不认识”
   _UnKnow:function(event){
     //console.log(this.data.wordslist[this.data.i].word)
     this.setData({
@@ -79,6 +78,7 @@ Page({
       fail:console.error
     })
   },
+  //点击“我认识”
   _Know:function(){
     this.setData({
       studyNumber: this.data.studyNumber + 1,
@@ -88,6 +88,7 @@ Page({
       this.isEnd()
     }
   },
+  //点击下一个单词
   nextWord:function(){
     this.rotateFn()
     this.setData({
@@ -99,7 +100,6 @@ Page({
     }//end if
   },
   getOpenid:function(){
-    
     wx.cloud.callFunction({
       name:'login'
     }).then(res=>{
@@ -110,6 +110,7 @@ Page({
       console.log(err)
     })
   },
+  //判断是否学完
   isEnd:function(){
     var that = this
     wx.showModal({
@@ -156,6 +157,7 @@ Page({
     this.setData({
       major:options.major
     });
+    //查询该专业学习进度
     db.collection('studyProcess').where({
       _openid: this.data.openid,
       major: options.major
@@ -171,21 +173,37 @@ Page({
       }).catch(err => {
         console.log(err)
       })
-    
-    db.collection('computer_dictionary').get().then(res => {
-      // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
+    //查询所选专业对应的词典
+    db.collection('major').where({
+      name: options.major
+    }).get().then(res => {
+      console.log(res.data[0].dictionary)
       this.setData({
-        wordslist: res.data
-      });
-      if (this.data.word_learned >= this.data.wordslist.length){
-        this.isEnd()
-      }
-    }).catch(err=>{
-      console.log(err)
+        dictionary: res.data[0].dictionary
+      })
+      this.queryWord()
     })
     
   },
-
+  //查询所选专业所有单词
+  queryWord:function(){
+    wx.cloud.callFunction({
+      name: 'queryWord',
+      data: {
+        dictionary: this.data.dictionary
+      }
+    }).then(res => {
+      this.setData({
+        wordslist: res.result.data
+      });
+      if (this.data.word_learned >= this.data.wordslist.length) {
+        this.isEnd()
+      }
+      //console.log(res.result.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -211,7 +229,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("页面卸载")
+    //console.log("页面卸载")
     if (this.data.studyNumber + this.data.word_learned > this.data.total_words){
       this.setData({
         studyNumber: this.data.total_words - this.data.word_learned
@@ -221,7 +239,7 @@ Page({
       name:'process',
       data:{
         major:this.data.major,
-        totalNumber: 124,
+        totalNumber: this.data.total_words,
         studyNumber:this.data.studyNumber
       }
     }).then(res=>{

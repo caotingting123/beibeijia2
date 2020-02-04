@@ -5,14 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    communityInfos:[],
+    isList: { community: true},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(1)
+    wx.cloud.callFunction({
+      name: 'queryCommunity',
 
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
   },
   handleSelect: function(){
     wx.navigateTo({
@@ -23,7 +32,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log(1)
   },
 
   /**

@@ -81,14 +81,15 @@ Page({
         db.collection('major').where({
           name: that.data.major_id // 填入major
         }).get().then(res1 => {
-          //console.log(res1.data[0].dictionary)
+          console.log(res1.data[0].dictionary)
           //查询所选专业对应字典的单词记录数目
           db.collection(res1.data[0].dictionary).count().then(res2 => {
-            console.log(res2.total)
+            //console.log(res2.total)
+            //console.log(that.data.major_id)
             wx.cloud.callFunction({
               name: 'process',
               data: {
-                major: that.data.major,
+                major: that.data.major_id,
                 studyNumber: 0,
                 totalNumber: res2.total
               }

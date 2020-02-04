@@ -3,7 +3,7 @@
 <import src="../community/community.wxml"/>
 <import src="../mine/mine.wxml"/>
 <i-tab-bar current="{{ current }}" color="#0081ff" bindchange="handleChange" fixed>
-    <i-tab-bar-item key="index" icon="createtask" current-icon="createtask_fill" title="背词">
+    <i-tab-bar-item key="index" icon="createtask" current-icon="createtask_fill" title="首页">
     </i-tab-bar-item>
     <i-tab-bar-item key="search" icon="search" current-icon="searchfill" title="查词"></i-tab-bar-item>
     <i-tab-bar-item key="community" icon="group" current-icon="group_fill" title="社区"></i-tab-bar-item>
@@ -11,47 +11,48 @@
 </i-tab-bar> 
 
 <view wx:if="{{isList.index}}" class="index">
-    <navigator url="/pages/selectMajor/selectMajor" >
-      <i-panel title="">
-        <view style="padding: 15px;">专业：{{selectedMajor}}</view>
-      </i-panel>
-    </navigator>
     <i-tabs current="{{current1}}" bindchange="handleChange1">
       <i-tab key="tab1" title="学习进度"></i-tab>
       <i-tab key="tab2" title="打卡日历"></i-tab>
       
     </i-tabs>
-    <view class="word_index_circle">
-      <i-progress percent="{{percent}}" status="active"></i-progress>
+    <navigator url="/pages/selectMajor/selectMajor" >
+      
+        <view class="index-top" style="padding: 15px;text-align: center;" mode="center">专业：{{selectedMajor}}</view>
+      
+    </navigator>
+    
+    <view class="word_index_circle" style="background:url(https://6265-beibeijia-awhvo-1300533672.tcb.qcloud.la/index/background.jpg?sign=24ea877517da2ed865a9824c0ddfe351&t=1580738343) no-repeat top/cover">
+      <i-progress i-class="word_index_progress" percent="{{percent}}" status="active"></i-progress>
       
     </view>
     <view class="word_index_task">
       <view class='status'>
-        <i-icon type="emoji" size="20"/>
+        <i-icon type="emoji_fill" size="30" color = "#2db7f5"/>
         <text>{{word_learned}}</text>
         <text>学习中字词</text>
       </view>
       <view class='status'>
-        <i-icon type="success"   size="20"/>
+        <i-icon type="success_fill"   size="30" color = "#2db7f5"/>
         <text>{{word_learned}}</text>
         <text>已学习字词</text>
       </view>
       
       <view class='status'>
-        <i-icon type="delete" size="20"/>
+        <i-icon type="delete_fill" size="30" color = "#2db7f5"/>
         
         <text>{{word_unlearn}}</text> 
         <text>未学习字词</text>
       </view>
     </view>
-    <view class="add_start_btn">
+    <!-- <view class="add_start_btn">
       
       <i-button type="primary" shape="circle" bind:click="clickStudy" data-major="{{selectedMajor}}">开始学习</i-button>
       
-    </view>
+    </view> -->
 
     <view class="grid_style">
-      <i-grid >
+      <i-grid>
         <i-grid-item i-class = "grid_index">
           <navigator url='../reciteWord/reciteWord?major={{selectedMajor}}'> 
             <image class="grid-img"  src="../../images/index/xuexi.png" />        

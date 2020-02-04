@@ -18,8 +18,7 @@
 
   
   <i-cell-group >
-  、
-      <i-cell title="学习进度" is-link url="/pages/dashboard/index"> 
+      <i-cell title="学习进度" is-link url="/pages/mine/columnProcess/columnProcess"> 
         <i-icon slot="icon" type="dynamic"size="24" color="#6100ff" />
       </i-cell>
     
